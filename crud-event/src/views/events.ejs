@@ -1,0 +1,78 @@
+<% include partials/_header %>
+
+<h1>EVENTS</h1>
+
+
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-md-7">
+
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Nº</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Address</th>
+            <th>Bengin Date</th>
+            <th>End Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (data) { %>
+            <% for (var i = 0; i < data.length; i++) {%>
+              <tr>
+                <td><%= (i + 1) %></td>
+                <td><%= data[i].name %></td>
+                <td><%= data[i].description %></td>
+                <td><%= data[i].address %></td>
+                <td><%= data[i].begindate %></td>
+                <td><%= data[i].enddate %></td>
+                <td>
+                  <a href="/delete/<%= data[i].id %>" class="btn btn-danger">Delete</a>
+                  <a href="/update/<%= data[i].id %>" class="btn btn-info">Update</a>
+                </td>
+              </tr>
+            <% } %>
+          <% } %>
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-body">
+          <form action="/add" method="POST">
+
+              <div class="form-group">
+                <input type="text" name="name" placeholder="Name" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="text" name="description" placeholder="Description" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="text" name="address" placeholder="Address" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="text" name="begindate" placeholder="Begin Date" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="text" name="enddate" placeholder="End Date" class="form-control">
+              </div>
+
+              <button type="submit" class="btn btn-primary">
+                Save Event
+              </button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<% include partials/_footer %>
